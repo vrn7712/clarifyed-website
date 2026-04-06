@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Confidential
+clarifyed_ai_summary_v4.md
+
+# AI tooling
+CLAUDE.md
+.claude/
