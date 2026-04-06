@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'motion/react';
-import { ArrowRight, ArrowLeft, ArrowUpRight, Linkedin, Twitter, Facebook, Instagram, Youtube, User, BookOpen, Building2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ArrowUpRight, Linkedin, Twitter, Facebook, Instagram, Youtube, User, BookOpen, Building2, Menu, X, ChevronDown } from 'lucide-react';
 
 const ArticleCard = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,6 +23,9 @@ const ArticleCard = ({ children, className }: { children: React.ReactNode, class
 export default function App() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Smooth scrolling for anchor links
   useEffect(() => {
@@ -162,6 +165,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-[#f4f4f0] font-sans selection:bg-[#e8705b] selection:text-white">
+      <a href="#main-content" className="skip-to-content">Skip to content</a>
       {/* Header */}
       <motion.header 
         initial={{ y: -100 }}
@@ -196,13 +200,44 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <button className="px-4 py-1.5 rounded-full text-sm border border-white/20 hover:bg-white/10 transition-all">Sign in</button>
-            <a href="#contact" className="px-4 py-1.5 rounded-full text-sm bg-[#e8705b] text-white font-medium hover:bg-[#d6604d] transition-all">Get Started</a>
+            <button className="hidden md:block px-4 py-1.5 rounded-full text-sm border border-white/20 hover:bg-white/10 transition-all focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2">Sign in</button>
+            <a href="#contact" className="hidden md:block px-4 py-1.5 rounded-full text-sm bg-[#e8705b] text-white font-medium hover:bg-[#d6604d] transition-all focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">Get Started</a>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </motion.div>
       </motion.header>
 
-      <main className="pt-32">
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-[#1a1a1a]/98 backdrop-blur-xl pt-28 px-8 md:hidden"
+          >
+            <nav className="flex flex-col gap-6 mb-10">
+              <a href="#roles" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-white/90 hover:text-white transition-colors">Features</a>
+              <a href="#resources" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-white/90 hover:text-white transition-colors">Resources</a>
+              <a href="#company" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-white/90 hover:text-white transition-colors">Company</a>
+            </nav>
+            <div className="flex flex-col gap-3">
+              <button className="w-full py-3 rounded-full text-lg border border-white/20 hover:bg-white/10 transition-all">Sign in</button>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="w-full py-3 rounded-full text-lg bg-[#e8705b] text-white font-medium hover:bg-[#d6604d] transition-all text-center">Get Started</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <main id="main-content" className="pt-32">
         {/* Hero Section */}
         <section className="relative pt-32 pb-40 px-6 text-center max-w-7xl mx-auto overflow-hidden">
           {/* Background Effects */}
@@ -254,7 +289,7 @@ export default function App() {
             
             <motion.h1 
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="text-6xl md:text-8xl font-medium tracking-tighter leading-[1.05] mb-8"
+              className="text-4xl sm:text-6xl md:text-8xl font-medium tracking-tighter leading-[1.05] mb-8"
             >
               Learn Like Never Before<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3]">With a Real Tutor</span>
@@ -354,7 +389,7 @@ export default function App() {
         </section>
 
         {/* Beyond Insight */}
-        <section ref={beyondInsightRef} className="py-40 px-6 text-center relative overflow-hidden">
+        <section id="platform" ref={beyondInsightRef} className="py-40 px-6 text-center relative overflow-hidden">
           {/* Parallax Dotted Backgrounds */}
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
             <motion.div 
@@ -381,7 +416,7 @@ export default function App() {
                  ))}
               </motion.div>
               
-              <h2 className="text-5xl md:text-7xl font-medium flex items-center justify-center gap-6 flex-wrap">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-medium flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
                 Beyond Chatbots. <span className="w-8 h-8 rounded-full bg-[#e8705b] inline-block shadow-[0_0_20px_#e8705b]"></span> Into Real Learning.
               </h2>
 
@@ -392,40 +427,76 @@ export default function App() {
               </motion.div>
             </div>
 
-            <div className="flex justify-center items-center mb-12 relative h-64">
-               <motion.button 
+            {/* Desktop: overlapping circles */}
+            <div className="hidden md:flex justify-center items-center mb-12 relative h-64">
+               <motion.button
                  onClick={() => setActiveCircle(activeCircle === 'whiteboard' ? null : 'whiteboard')}
                  initial={{ opacity: 0, x: -50 }}
                  whileInView={{ opacity: 1, x: -128 }}
                  transition={{ duration: 0.8, ease: "easeOut" }}
                  viewport={{ once: true }}
-                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
+                 aria-pressed={activeCircle === 'whiteboard'}
+                 aria-label="Learn about the Whiteboard feature"
+                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
                >
                   <span className="text-[#e8705b] text-xl font-medium">Whiteboard</span>
                </motion.button>
-               <motion.button 
+               <motion.button
                  onClick={() => setActiveCircle(activeCircle === 'knowledge' ? null : 'knowledge')}
                  initial={{ opacity: 0, scale: 0.8 }}
                  whileInView={{ opacity: 1, scale: 1 }}
                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                  viewport={{ once: true }}
-                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center backdrop-blur-sm transition-all duration-300 cursor-pointer ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#e8705b]/20 z-20 scale-105' : 'border-[#e8705b]/50 bg-[#1a1a1a]/40 hover:border-[#e8705b] hover:bg-[#1a1a1a]/60 z-10'}`}
+                 aria-pressed={activeCircle === 'knowledge'}
+                 aria-label="Learn about the Knowledge Graph feature"
+                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center backdrop-blur-sm transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#e8705b]/20 z-20 scale-105' : 'border-[#e8705b]/50 bg-[#1a1a1a]/40 hover:border-[#e8705b] hover:bg-[#1a1a1a]/60 z-10'}`}
                >
                   <span className="text-[#e8705b] text-xl font-medium">Knowledge Graph</span>
                </motion.button>
-               <motion.button 
+               <motion.button
                  onClick={() => setActiveCircle(activeCircle === 'collaboration' ? null : 'collaboration')}
                  initial={{ opacity: 0, x: 50 }}
                  whileInView={{ opacity: 1, x: 128 }}
                  transition={{ duration: 0.8, ease: "easeOut" }}
                  viewport={{ once: true }}
-                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
+                 aria-pressed={activeCircle === 'collaboration'}
+                 aria-label="Learn about the Collaboration feature"
+                 className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
                >
                   <span className="text-[#e8705b] text-xl font-medium">Collaboration</span>
                </motion.button>
             </div>
 
-            <div className="h-32 mb-12 flex items-center justify-center">
+            {/* Mobile: stacked cards */}
+            <div className="flex md:hidden flex-col gap-4 mb-12 px-2">
+              {(['whiteboard', 'knowledge', 'collaboration'] as const).map((key) => (
+                <motion.button
+                  key={key}
+                  onClick={() => setActiveCircle(activeCircle === key ? null : key)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  aria-pressed={activeCircle === key}
+                  className={`w-full p-6 rounded-2xl border text-left transition-all duration-300 ${activeCircle === key ? 'border-[#e8705b] bg-[#e8705b]/10' : 'border-[#e8705b]/30 bg-white/5'}`}
+                >
+                  <span className="text-[#e8705b] text-lg font-medium capitalize">{key === 'knowledge' ? 'Knowledge Graph' : key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                  <AnimatePresence>
+                    {activeCircle === key && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="text-white/80 text-sm mt-3 leading-relaxed"
+                      >
+                        {circleInfo[key]}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              ))}
+            </div>
+
+            <div className="hidden md:flex h-32 mb-12 items-center justify-center">
               <AnimatePresence mode="wait">
                 {activeCircle ? (
                   <motion.p 
@@ -457,7 +528,7 @@ export default function App() {
         <section id="roles" className="py-32 px-6 bg-[#9ca3af]/10">
           <div className="max-w-7xl mx-auto">
             <p className="text-[#a3a3a3] text-lg mb-4">Built for Every Learner</p>
-            <h2 className="text-5xl md:text-7xl font-medium mb-6 max-w-3xl leading-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-medium mb-6 max-w-3xl leading-tight">
               For the people shaping the future
             </h2>
             <p className="text-xl text-[#a3a3a3] max-w-2xl mb-16">
@@ -620,11 +691,11 @@ export default function App() {
         {/* Think Different */}
         <section ref={thinkDifferentRef} className="h-[300vh] relative bg-[#1a1a1a]">
           <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center pt-24">
-            <h2 className="text-5xl md:text-6xl font-medium mb-4">Think Different.</h2>
-            <h2 className="text-5xl md:text-6xl font-medium text-[#a3a3a3] mb-12">We Already Built It.</h2>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-medium mb-4">Think Different.</h2>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-medium text-[#a3a3a3] mb-12">We Already Built It.</h2>
 
             {/* Text Container */}
-            <div className="relative w-full max-w-2xl h-32 flex justify-center mb-8">
+            <div className="relative w-full max-w-2xl h-40 sm:h-32 flex justify-center mb-8 px-4">
               <AnimatePresence mode="wait">
                 {tdStep === 1 && (
                   <motion.div key="step1" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute inset-0 flex flex-col items-center text-center">
@@ -708,22 +779,34 @@ export default function App() {
         {/* Trusted By */}
         <section className="py-32 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
           <div className="flex flex-col justify-between">
-            <h2 className="text-5xl md:text-7xl font-medium leading-tight text-[#f4f4f0]/90">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-medium leading-tight text-[#f4f4f0]/90">
               Loved by the<br/>learners who<br/>lead the way
             </h2>
-            <div className="flex gap-4 mt-16">
-              <button 
+            <div className="flex items-center gap-4 mt-16">
+              <button
                 onClick={prevTestimonial}
-                className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors"
+                aria-label="Previous testimonial"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2"
               >
-                <ArrowLeft className="w-6 h-6 text-white/50" />
+                <ArrowLeft className="w-5 h-5 md:w-6 md:h-6 text-white/50" />
               </button>
-              <button 
+              <button
                 onClick={nextTestimonial}
-                className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors"
+                aria-label="Next testimonial"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2"
               >
-                <ArrowRight className="w-6 h-6" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
+              <div className="flex gap-2 ml-4">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentTestimonial(i)}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${i === currentTestimonial ? 'bg-[#e8705b] scale-125' : 'bg-white/30 hover:bg-white/50'}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex flex-col justify-center relative min-h-[400px]">
@@ -736,9 +819,9 @@ export default function App() {
                 transition={{ duration: 0.3 }}
                 className="flex flex-col"
               >
-                <p className="text-2xl md:text-3xl leading-relaxed mb-10 text-[#f4f4f0]/90">
+                <blockquote className="text-xl sm:text-2xl md:text-3xl leading-relaxed mb-10 text-[#f4f4f0]/90">
                   "{testimonials[currentTestimonial].quote}"
-                </p>
+                </blockquote>
                 <div className="flex items-center gap-4">
                   <img src={testimonials[currentTestimonial].image} alt={testimonials[currentTestimonial].name} className="w-14 h-14 rounded-full border-2 border-[#e8705b]" />
                   <div>
@@ -768,7 +851,7 @@ export default function App() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-5xl md:text-7xl font-medium text-[#1a1a1a] leading-tight mb-6">
+                <h2 className="text-3xl sm:text-5xl md:text-7xl font-medium text-[#1a1a1a] leading-tight mb-6">
                   From struggling<br/>with calculus to<br/>mastering it
                 </h2>
                 <p className="text-xl text-[#1a1a1a]/70 mb-10 max-w-lg">
@@ -789,7 +872,7 @@ export default function App() {
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
-                  src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop" alt="Students learning" className="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop" alt="Students collaborating at Greenwood Academy" loading="lazy" className="w-full h-full object-cover"
                 />
               </motion.div>
             </div>
@@ -857,7 +940,7 @@ export default function App() {
           </div>
           <div className="relative h-[600px] overflow-hidden">
             {/* Grid of integration logos */}
-            <div className="absolute right-0 top-0 grid grid-cols-2 gap-4 w-[120%] transform rotate-12 translate-x-10 -translate-y-20">
+            <div className="absolute right-0 top-0 grid grid-cols-2 gap-4 w-full md:w-[120%] transform md:rotate-12 md:translate-x-10 md:-translate-y-20">
                {Array.from({length: 8}).map((_, i) => (
                  <motion.div 
                    key={i} 
@@ -883,7 +966,7 @@ export default function App() {
         </section>
 
         {/* CTA */}
-        <section ref={ctaRef} id="contact" className="bg-[#e8705b] pt-32 pb-64 px-6 text-center relative overflow-hidden flex flex-col items-center justify-start min-h-[90vh]">
+        <section ref={ctaRef} id="contact" className="bg-[#e8705b] pt-20 md:pt-32 pb-32 md:pb-64 px-6 text-center relative overflow-hidden flex flex-col items-center justify-start min-h-[70vh] md:min-h-[90vh]">
           <div className="relative z-10 mb-24">
             <h2 className="text-5xl md:text-7xl font-medium text-[#1a1a1a] mb-6">
               Built to fit today.<br/>Ready for tomorrow
@@ -897,7 +980,7 @@ export default function App() {
           </div>
           
           {/* Gravity well graphic */}
-          <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[1200px] h-[500px] opacity-40 pointer-events-none">
+          <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[500px] opacity-40 pointer-events-none hidden md:block">
             <svg viewBox="0 0 1200 500" fill="none">
               {/* Concentric ellipses getting denser at the center */}
               <ellipse cx="600" cy="250" rx="550" ry="180" stroke="#1a1a1a" strokeWidth="1" />
@@ -954,7 +1037,7 @@ export default function App() {
 
             <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
               {/* Article 1 */}
-              <ArticleCard className="group min-w-[800px] bg-[#8ebf9e] rounded-[2rem] p-8 flex gap-8 snap-center">
+              <ArticleCard className="group min-w-[300px] md:min-w-[800px] bg-[#8ebf9e] rounded-[2rem] p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 snap-center">
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <span className="px-3 py-1 rounded-full border border-[#1a1a1a]/20 text-sm mb-6 inline-block">EdTech</span>
@@ -975,13 +1058,13 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                <div className="w-[400px] h-[300px] rounded-2xl overflow-hidden shrink-0">
-                  <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?q=80&w=1974&auto=format&fit=crop" alt="Article" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+                <div className="w-full md:w-[400px] h-[200px] md:h-[300px] rounded-2xl overflow-hidden shrink-0">
+                  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="AI tutoring in education" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
                 </div>
               </ArticleCard>
 
               {/* Article 2 */}
-              <ArticleCard className="group min-w-[400px] bg-[#8ebf9e] rounded-[2rem] p-8 flex flex-col justify-between snap-center">
+              <ArticleCard className="group min-w-[280px] md:min-w-[400px] bg-[#8ebf9e] rounded-[2rem] p-6 md:p-8 flex flex-col justify-between snap-center">
                 <div>
                   <span className="px-3 py-1 rounded-full border border-[#1a1a1a]/20 text-sm mb-6 inline-block">Research</span>
                   <h3 className="text-3xl font-medium leading-tight mb-8">
@@ -1005,10 +1088,10 @@ export default function App() {
 
             <div className="flex justify-between items-center mt-8">
               <div className="flex gap-2">
-                <button className="w-16 h-16 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center hover:bg-[#1a1a1a]/5 transition-colors">
+                <button aria-label="Previous article" className="w-16 h-16 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center hover:bg-[#1a1a1a]/5 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2">
                   <ArrowLeft className="w-6 h-6" />
                 </button>
-                <button className="w-16 h-16 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center hover:bg-[#1a1a1a]/5 transition-colors">
+                <button aria-label="Next article" className="w-16 h-16 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center hover:bg-[#1a1a1a]/5 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2">
                   <ArrowRight className="w-6 h-6" />
                 </button>
               </div>
@@ -1019,6 +1102,44 @@ export default function App() {
                 <div className="w-8 h-2 rounded-full bg-[#1a1a1a]/20"></div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-24 md:py-32 px-6 max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-medium mb-16 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {[
+              { q: "How is Clarifyed different from ChatGPT or Khanmigo?", a: "Every AI tutor on the market is a chatbot — you type a question, it types back a paragraph. Clarifyed has no chat interface. The AI teaches on a multi-page whiteboard, writing notes stroke by stroke, drawing diagrams, embedding interactive widgets, and then handing the pen to the student." },
+              { q: "What subjects does Clarifyed cover?", a: "Clarifyed works across all STEM subjects — mathematics, physics, chemistry, and biology. The whiteboard-native approach is especially powerful for subjects that require visual reasoning, diagrams, and step-by-step derivations." },
+              { q: "Is my child's data private and secure?", a: "Absolutely. All student data, including knowledge graphs and session history, is encrypted and stored securely. We never sell student data to third parties. Parents and teachers have full visibility into what the AI teaches." },
+              { q: "Can teachers see student progress?", a: "Yes. Teachers get access to each student's persistent knowledge graph — showing exactly what topics they've mastered, where gaps exist, what misconceptions they hold, and when they last practiced each concept." },
+              { q: "Is there a free plan?", a: "Yes. Free-tier students get the full Socratic whiteboard teaching experience with access to every tool. The AI adapts which modalities it uses based on what's most effective. Paid plans unlock richer experiences like AI-generated explainer videos and priority access." },
+            ].map((item, i) => (
+              <div key={i} className="border border-white/10 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-[-2px]"
+                  aria-expanded={openFaq === i}
+                >
+                  <span className="text-lg font-medium pr-4">{item.q}</span>
+                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 text-[#a3a3a3] leading-relaxed">{item.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -1093,12 +1214,16 @@ export default function App() {
             <div className="max-w-md w-full">
               <h4 className="text-3xl font-medium mb-2">Stay Updated</h4>
               <p className="text-[#a3a3a3] mb-6">Get the latest on AI-powered learning and whiteboard tutoring.</p>
-              <div className="flex gap-2">
-                <input type="email" placeholder="Your email" className="bg-transparent border border-white/20 rounded-lg px-4 py-3 flex-1 focus:outline-none focus:border-[#e8705b] transition-colors" />
-                <button className="bg-[#f4f4f0] text-[#1a1a1a] px-6 py-3 rounded-lg font-medium hover:bg-white transition-colors">
-                  Subscribe
-                </button>
-              </div>
+              {emailSubmitted ? (
+                <p className="text-[#8ebf9e] text-lg font-medium">Thanks! You're on the list.</p>
+              ) : (
+                <form onSubmit={(e) => { e.preventDefault(); setEmailSubmitted(true); }} className="flex gap-2">
+                  <input type="email" required placeholder="Your email" aria-label="Email address" className="bg-transparent border border-white/20 rounded-lg px-4 py-3 flex-1 focus:outline-none focus:border-[#e8705b] transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2" />
+                  <button type="submit" className="bg-[#f4f4f0] text-[#1a1a1a] px-6 py-3 rounded-lg font-medium hover:bg-white transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2">
+                    Subscribe
+                  </button>
+                </form>
+              )}
             </div>
             
             <p className="text-[#f4f4f0] text-lg">
