@@ -3,6 +3,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import LogoCloud from './components/sections/LogoCloud';
+import ClarifyedFeatures from './components/sections/ClarifyedFeatures';
 import Platform from './components/sections/Platform';
 import Roles from './components/sections/Roles';
 import Architecture from './components/sections/Architecture';
@@ -12,6 +13,7 @@ import Testimonials from './components/sections/Testimonials';
 import Team from './components/sections/Team';
 import CaseStudy from './components/sections/CaseStudy';
 import Integrations from './components/sections/Integrations';
+import Pricing from './components/sections/Pricing';
 import CTA from './components/sections/CTA';
 import VideoDemos from './components/sections/VideoDemos';
 import FAQ from './components/sections/FAQ';
@@ -53,6 +55,7 @@ export default function App() {
       <main id="main-content" className="pt-32">
         <Hero />
         <LogoCloud />
+        <ClarifyedFeatures />
         <Platform />
         <Roles />
         <Architecture />
@@ -62,6 +65,7 @@ export default function App() {
         <Team />
         <CaseStudy />
         <Integrations />
+        <Pricing />
         <CTA />
         <VideoDemos />
         <FAQ />

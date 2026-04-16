@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Linkedin, Twitter, Facebook, Instagram, Youtube, User, BookOpen, Building2 } from 'lucide-react';
+import { Linkedin, Twitter, Facebook, Instagram, Youtube, ArrowRight } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 export default function Footer() {
@@ -37,92 +37,104 @@ export default function Footer() {
   };
 
   return (
-    <footer id="company" className="bg-[#1a1a1a] pt-32 pb-12 px-6 border-t border-white/10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-16 mb-24">
-          <div className="col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="6" width="28" height="20" rx="3" stroke="#f4f4f0" strokeWidth="3" fill="none"/>
-                <path d="M12 16 L18 12 L24 16 L30 10" stroke="#e8705b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                <line x1="14" y1="30" x2="26" y2="30" stroke="#f4f4f0" strokeWidth="3" strokeLinecap="round"/>
-              </svg>
-              <span className="text-3xl font-medium tracking-tight">Clarifyed</span>
-            </div>
-            <p className="text-[#a3a3a3] mb-8">
-              Whiteboard-native AI tutoring.<br/>Real learning, delivered.
+    <footer id="company" className="relative bg-[#0d0d0d] pt-32 pb-12 overflow-hidden border-t border-white/5">
+      {/* Premium ambient background */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-12 gap-16 md:gap-8 mb-24">
+          
+          {/* Brand Col */}
+          <div className="col-span-12 md:col-span-5 flex flex-col gap-8 pr-0 md:pr-12">
+            <img src={`${import.meta.env.BASE_URL}Footer_clarifyed.png`} alt="Clarifyed Logo" className="h-20 w-auto object-contain -ml-2 self-start" />
+            <p className="text-xl text-[#a3a3a3] font-light leading-relaxed">
+              Whiteboard-native AI tutoring.<br/>Real learning, delivered stroke by stroke.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Linkedin className="w-4 h-4" />
+            <div className="flex gap-4 mt-2">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-white/70">
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Twitter className="w-4 h-4" />
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-white/70">
+                <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Facebook className="w-4 h-4" />
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-white/70">
+                <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Youtube className="w-4 h-4" />
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-white/70">
+                <Youtube className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xl font-medium text-[#a3a3a3] mb-6">For</h4>
-            <ul className="space-y-4 text-[#f4f4f0]/80">
-              <li><a href="#roles" className="flex items-center gap-2 hover:text-white transition-colors"><User className="w-4 h-4" /> Students</a></li>
-              <li><a href="#roles" className="flex items-center gap-2 hover:text-white transition-colors"><User className="w-4 h-4" /> Teachers</a></li>
-              <li><a href="#roles" className="flex items-center gap-2 hover:text-white transition-colors"><User className="w-4 h-4" /> Schools</a></li>
-              <li><a href="#roles" className="flex items-center gap-2 hover:text-white transition-colors"><User className="w-4 h-4" /> Parents</a></li>
-            </ul>
-          </div>
+          {/* Links Cols */}
+          <div className="col-span-12 md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-12">
+            <div>
+              <h4 className="text-sm font-semibold tracking-wider text-white uppercase mb-8 opacity-90">Platform</h4>
+              <ul className="space-y-5 text-[#a3a3a3]">
+                <li><a href="#roles" className="hover:text-white hover:translate-x-1 block transition-all">For Students</a></li>
+                <li><a href="#roles" className="hover:text-white hover:translate-x-1 block transition-all">For Teachers</a></li>
+                <li><a href="#roles" className="hover:text-white hover:translate-x-1 block transition-all">For Schools</a></li>
+                <li><a href="#roles" className="hover:text-white hover:translate-x-1 block transition-all">For Parents</a></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-xl font-medium text-[#a3a3a3] mb-6">Knowledge</h4>
-            <ul className="space-y-4 text-[#f4f4f0]/80">
-              <li><a href="#resources" className="flex items-center gap-2 hover:text-white transition-colors"><BookOpen className="w-4 h-4" /> Blog</a></li>
-              <li><a href="#resources" className="flex items-center gap-2 hover:text-white transition-colors"><BookOpen className="w-4 h-4" /> Trust Center</a></li>
-            </ul>
-          </div>
+            <div>
+              <h4 className="text-sm font-semibold tracking-wider text-white uppercase mb-8 opacity-90">Resources</h4>
+              <ul className="space-y-5 text-[#a3a3a3]">
+                <li><a href="#resources" className="hover:text-white hover:translate-x-1 block transition-all">Blog</a></li>
+                <li><a href="#resources" className="hover:text-white hover:translate-x-1 block transition-all">Help Center</a></li>
+                <li><a href="#resources" className="hover:text-white hover:translate-x-1 block transition-all">Trust Center</a></li>
+                <li><a href="#pricing" className="hover:text-white hover:translate-x-1 block transition-all">Pricing</a></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-xl font-medium text-[#a3a3a3] mb-6">Company</h4>
-            <ul className="space-y-4 text-[#f4f4f0]/80">
-              <li><a href="#company" className="flex items-center gap-2 hover:text-white transition-colors"><Building2 className="w-4 h-4" /> About Us</a></li>
-              <li><a href="#company" className="flex items-center gap-2 hover:text-white transition-colors"><Building2 className="w-4 h-4" /> Careers</a></li>
-              <li><a href="#company" className="flex items-center gap-2 hover:text-white transition-colors"><Building2 className="w-4 h-4" /> Partners</a></li>
-              <li><a href="#privacy-policy" className="flex items-center gap-2 hover:text-white transition-colors"><Building2 className="w-4 h-4" /> Privacy Policy</a></li>
-              <li><a href="#terms" className="flex items-center gap-2 hover:text-white transition-colors"><Building2 className="w-4 h-4" /> Terms & Conditions</a></li>
-            </ul>
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="text-sm font-semibold tracking-wider text-white uppercase mb-8 opacity-90">Company</h4>
+              <ul className="space-y-5 text-[#a3a3a3]">
+                <li><a href="#company" className="hover:text-white hover:translate-x-1 block transition-all">About Us</a></li>
+                <li><a href="#company" className="hover:text-white hover:translate-x-1 block transition-all">Careers</a></li>
+                <li><a href="#company" className="hover:text-white hover:translate-x-1 block transition-all">Partners</a></li>
+                <li><a href="#privacy-policy" className="hover:text-white hover:translate-x-1 block transition-all">Privacy Policy</a></li>
+                <li><a href="#terms" className="hover:text-white hover:translate-x-1 block transition-all">Terms</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-end gap-8">
+        {/* Subscribe & Bottom Bar */}
+        <div className="pt-12 border-t border-white/10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
+          
           <div className="max-w-md w-full">
-            <h4 className="text-3xl font-medium mb-2">Stay Updated</h4>
-            <p className="text-[#a3a3a3] mb-6">Get the latest on AI-powered learning and whiteboard tutoring.</p>
+            <h4 className="text-xl font-medium mb-3 text-white">Join the future of learning.</h4>
             {emailSubmitted ? (
-              <p className="text-[#8ebf9e] text-lg font-medium">Thanks! You're on the list.</p>
+              <p className="text-[#8ebf9e] text-lg font-medium mt-4">Thanks! You're on the list.</p>
             ) : (
-              <form onSubmit={handleEmailSubmit} className="flex flex-col gap-2">
-                <div className="flex gap-2">
-                  <input type="email" required placeholder="Your email" aria-label="Email address" disabled={emailLoading} className="bg-transparent border border-white/20 rounded-lg px-4 py-3 flex-1 focus:outline-none focus:border-[#e8705b] transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 disabled:opacity-50" />
-                  <button type="submit" disabled={emailLoading} className="bg-[#f4f4f0] text-[#1a1a1a] px-6 py-3 rounded-lg font-medium hover:bg-white transition-colors focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 disabled:opacity-50">
-                    {emailLoading ? 'Sending...' : 'Subscribe'}
-                  </button>
-                </div>
-                {emailError && <p className="text-[#e8705b] text-sm">{emailError}</p>}
+              <form onSubmit={handleEmailSubmit} className="relative mt-4">
+                <input 
+                  type="email" 
+                  required 
+                  placeholder="Enter your email address" 
+                  disabled={emailLoading} 
+                  className="w-full bg-white/5 border border-white/10 rounded-full pl-6 pr-32 py-4 text-white focus:outline-none focus:border-[#e8705b]/50 focus:bg-white/10 transition-all disabled:opacity-50" 
+                />
+                <button 
+                  type="submit" 
+                  disabled={emailLoading} 
+                  className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#e8705b] hover:bg-[#d6604d] text-white px-6 rounded-full font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {emailLoading ? '...' : (
+                    <>Subscribe <ArrowRight className="w-4 h-4 ml-1 -mr-1" /></>
+                  )}
+                </button>
+                {emailError && <p className="text-[#e8705b] text-sm mt-3 absolute -bottom-6 left-4">{emailError}</p>}
               </form>
             )}
           </div>
           
-          <p className="text-[#f4f4f0] text-lg">
-            © 2026 Teenage Works Private Limited. All rights reserved.
-          </p>
+          <div className="flex flex-col md:items-end gap-2 text-sm text-[#a3a3a3]">
+            <p>© 2026 Teenage Works Private Limited.</p>
+            <p>All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

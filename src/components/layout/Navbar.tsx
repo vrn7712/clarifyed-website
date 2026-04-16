@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 
+import RandomUnderline from '../sections/RandomUnderline';
+
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,25 +26,20 @@ export default function Navbar() {
           borderColor: isScrolled ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.05)",
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-md border shadow-2xl overflow-hidden"
+        className="fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-md border shadow-2xl overflow-visible"
       >
         <motion.div 
           animate={{ height: isScrolled ? "4rem" : "5rem" }}
-          className="w-full px-6 flex items-center justify-between max-w-7xl mx-auto"
+          className="w-full px-6 flex items-center justify-between max-w-7xl mx-auto overflow-visible"
         >
           <div className="flex items-center gap-2">
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="28" height="20" rx="3" stroke="#f4f4f0" strokeWidth="3" fill="none"/>
-              <path d="M12 16 L18 12 L24 16 L30 10" stroke="#e8705b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-              <line x1="14" y1="30" x2="26" y2="30" stroke="#f4f4f0" strokeWidth="3" strokeLinecap="round"/>
-            </svg>
-            <span className="text-xl font-medium tracking-tight">Clarifyed</span>
+            <img src={`${import.meta.env.BASE_URL}clarifyed_temp_logo.png`} alt="Clarifyed Logo" className="h-8 w-auto" />
           </div>
 
           <nav className="hidden md:flex items-center bg-white/5 rounded-full p-1 border border-white/10">
-            <a href="#roles" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">Features</a>
-            <a href="#resources" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">Resources</a>
-            <a href="#company" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">Company</a>
+            <a href="#roles" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white transition-all"><RandomUnderline>Features</RandomUnderline></a>
+            <a href="#resources" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white transition-all"><RandomUnderline>Resources</RandomUnderline></a>
+            <a href="#company" className="px-4 py-1.5 rounded-full text-sm text-white/80 hover:text-white transition-all"><RandomUnderline>Company</RandomUnderline></a>
           </nav>
 
           <div className="flex items-center gap-3">

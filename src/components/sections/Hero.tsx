@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import WhiteboardCanvas from './WhiteboardCanvas';
+import RandomUnderline from './RandomUnderline';
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-40 px-6 text-center max-w-7xl mx-auto overflow-hidden">
+    <section className="relative pb-40 px-6 text-center max-w-7xl mx-auto overflow-hidden">
       {/* Background Effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#e8705b]/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
@@ -29,7 +30,10 @@ export default function Hero() {
           className="text-4xl sm:text-6xl md:text-8xl font-medium tracking-tighter leading-[1.05] mb-8"
         >
           Learn Like Never Before<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3]">With a Real Tutor</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3]">With </span>
+          <RandomUnderline strokeWidth={14}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3] pr-2">a Real Tutor</span>
+          </RandomUnderline>
         </motion.h1>
         
         <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-xl md:text-2xl text-[#a3a3a3] max-w-2xl mx-auto mb-12 leading-relaxed font-light">

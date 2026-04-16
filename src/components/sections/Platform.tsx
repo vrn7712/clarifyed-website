@@ -87,29 +87,31 @@ export default function Platform() {
             whileInView={{ opacity: 1, x: -128 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
+            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
           >
-            <span className="text-[#e8705b] text-xl font-medium">Whiteboard</span>
+            <span className={`text-xl font-medium transition-colors ${activeCircle === 'whiteboard' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Whiteboard</span>
           </motion.button>
+          
           <motion.button
             onClick={() => setActiveCircle(activeCircle === 'knowledge' ? null : 'knowledge')}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center backdrop-blur-sm transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#e8705b]/20 z-20 scale-105' : 'border-[#e8705b]/50 bg-[#1a1a1a]/40 hover:border-[#e8705b] hover:bg-[#1a1a1a]/60 z-10'}`}
+            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
           >
-            <span className="text-[#e8705b] text-xl font-medium">Knowledge Graph</span>
+            <span className={`text-xl font-medium transition-colors ${activeCircle === 'knowledge' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Knowledge Graph</span>
           </motion.button>
+          
           <motion.button
             onClick={() => setActiveCircle(activeCircle === 'collaboration' ? null : 'collaboration')}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 128 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#e8705b]/10 z-20 scale-105' : 'border-[#e8705b]/50 hover:border-[#e8705b] hover:bg-[#e8705b]/5 z-0'}`}
+            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
           >
-            <span className="text-[#e8705b] text-xl font-medium">Collaboration</span>
+            <span className={`text-xl font-medium transition-colors ${activeCircle === 'collaboration' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Collaboration</span>
           </motion.button>
         </div>
 
