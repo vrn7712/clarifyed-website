@@ -7,10 +7,26 @@ import RandomUnderline from '../sections/RandomUnderline';
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 100);
+    const previous = scrollY.getPrevious() || 0;
+    
+    // Always visible and expanded at the top
+    if (latest < 100) {
+      setIsScrolled(false);
+      setIsHidden(false);
+    } else {
+      setIsScrolled(true); // compress shape down
+      
+      // If scrolling down aggressively, hide it. If scrolling up, show it.
+      if (latest > previous && latest > 300) {
+        setIsHidden(true);
+      } else if (latest < previous - 5) { // Add tiny threshold to prevent stuttering
+        setIsHidden(false);
+      }
+    }
   });
 
   return (
@@ -18,7 +34,7 @@ export default function Navbar() {
       <motion.header 
         initial={{ y: -100 }}
         animate={{ 
-          y: 0,
+          y: isHidden ? -120 : 0,
           width: isScrolled ? "min(80%, 800px)" : "100%",
           top: isScrolled ? "24px" : "0px",
           borderRadius: isScrolled ? "9999px" : "0px",

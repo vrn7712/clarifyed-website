@@ -1,4 +1,5 @@
 import React from 'react';
+import { Marquee } from '../ui/marquee';
 
 const allBrands = [
   { name: "YouTube", svg: <><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></> },
@@ -11,8 +12,8 @@ const allBrands = [
   { name: "Zoom", svg: <><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></> }
 ];
 
-// Duplicate items to simulate an endlessly cropped grid
-const gridItems = [...allBrands, ...allBrands];
+const row1 = allBrands.slice(0, 4);
+const row2 = allBrands.slice(4, 8);
 
 export default function Integrations() {
   return (
@@ -34,36 +35,66 @@ export default function Integrations() {
             maskImage: 'linear-gradient(to right, transparent, black 15%, black 100%)', 
             WebkitMaskImage: '-webkit-linear-gradient(left, transparent, black 15%, black 100%)' 
           }} 
-          className="w-full h-[150%] md:h-[120%] flex items-center"
+          className="w-full h-full flex flex-col justify-center gap-4 md:gap-5"
         >
-          {/* Solid square grid matching the mockups exactly */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 w-[120%] absolute -right-[10%]">
-            {gridItems.map((brand, i) => (
-              <div 
-                key={i} 
-                className="aspect-square bg-[#9ea6a3] rounded-[1.5rem] md:rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:scale-105 cursor-pointer shadow-lg relative overflow-hidden group"
-              >
-                {/* Logo wrapper */}
-                <svg 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  className={`w-12 h-12 md:w-16 md:h-16 transition-colors ${
-                    i % 3 === 0 ? 'text-[#e8705b] fill-[#e8705b]/20' : 
-                    i % 2 === 0 ? 'text-blue-600 fill-blue-600/20' : 
-                    'text-[#1a1a1a] fill-[#1a1a1a]/20'
-                  }`}
+          {/* Row 1 */}
+          <div className="w-[120%] absolute -right-[10%] flex flex-col gap-4 md:gap-5">
+            <Marquee duration={35} repeat={5} className="[--gap:1rem] md:[--gap:1.25rem]">
+              {row1.map((brand, i) => (
+                <div 
+                  key={`r1-${i}`} 
+                  className="w-40 h-40 md:w-[200px] md:h-[200px] shrink-0 bg-[#9ea6a3] rounded-[1.5rem] md:rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:scale-105 cursor-pointer shadow-lg overflow-hidden group"
                 >
-                  {brand.svg}
-                </svg>
-                <span className="text-[#1a1a1a] font-bold text-sm md:text-base tracking-tight opacity-80 group-hover:opacity-100 transition-opacity">
-                  {brand.name}
-                </span>
-              </div>
-            ))}
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    className={`w-12 h-12 md:w-16 md:h-16 transition-colors ${
+                      i % 3 === 0 ? 'text-[#e8705b] fill-[#e8705b]/20' : 
+                      i % 2 === 0 ? 'text-blue-600 fill-blue-600/20' : 
+                      'text-[#1a1a1a] fill-[#1a1a1a]/20'
+                    }`}
+                  >
+                    {brand.svg}
+                  </svg>
+                  <span className="text-[#1a1a1a] font-bold text-sm md:text-base tracking-tight opacity-80 group-hover:opacity-100 transition-opacity">
+                    {brand.name}
+                  </span>
+                </div>
+              ))}
+            </Marquee>
+
+            {/* Row 2 */}
+            <Marquee duration={40} repeat={5} reverse className="[--gap:1rem] md:[--gap:1.25rem]">
+              {row2.map((brand, i) => (
+                <div 
+                  key={`r2-${i}`} 
+                  className="w-40 h-40 md:w-[200px] md:h-[200px] shrink-0 bg-[#9ea6a3] rounded-[1.5rem] md:rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:scale-105 cursor-pointer shadow-lg overflow-hidden group"
+                >
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    className={`w-12 h-12 md:w-16 md:h-16 transition-colors ${
+                      (i+1) % 3 === 0 ? 'text-[#e8705b] fill-[#e8705b]/20' : 
+                      (i+1) % 2 === 0 ? 'text-emerald-700 fill-emerald-700/20' : 
+                      'text-[#1a1a1a] fill-[#1a1a1a]/20'
+                    }`}
+                  >
+                    {brand.svg}
+                  </svg>
+                  <span className="text-[#1a1a1a] font-bold text-sm md:text-base tracking-tight opacity-80 group-hover:opacity-100 transition-opacity">
+                    {brand.name}
+                  </span>
+                </div>
+              ))}
+            </Marquee>
           </div>
         </div>
       </div>

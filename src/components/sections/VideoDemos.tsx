@@ -6,12 +6,12 @@ export default function VideoDemos() {
   const [activeVideo, setActiveVideo] = useState(0);
 
   const videoDemos = [
-    { title: "AI Teaching on Whiteboard", description: "Watch the AI write notes and draw diagrams in real time", src: `${import.meta.env.BASE_URL}video1.mp4` },
-    { title: "Knowledge Graph in Action", description: "See how the AI tracks and adapts to student understanding", src: `${import.meta.env.BASE_URL}video2.mp4` },
-    { title: "Collaborative Problem Solving", description: "Students and AI working together on the same canvas", src: `${import.meta.env.BASE_URL}video3.mp4` },
-    { title: "Real-Time Error Correction", description: "The AI catches mistakes mid-step and guides corrections", src: `${import.meta.env.BASE_URL}video4.mp4` },
-    { title: "Interactive Widgets & Tools", description: "Embedded graphing, calculators, and simulations", src: `${import.meta.env.BASE_URL}video5.mp4` },
-    { title: "Spaced Repetition Woven In", description: "Automatic review scheduling based on mastery", src: `${import.meta.env.BASE_URL}video6.mp4` },
+    { prompt: "Explain Nodes and Antinodes in standing wave", title: "AI Teaching on Whiteboard", description: "Watch the AI write notes and draw diagrams in real time", src: `${import.meta.env.BASE_URL}video1.mp4` },
+    { prompt: "What is underdamped motion?", title: "Knowledge Graph in Action", description: "See how the AI tracks and adapts to student understanding", src: `${import.meta.env.BASE_URL}video2.mp4` },
+    { prompt: "Derive the Distance Formula with visuals", title: "Collaborative Problem Solving", description: "Students and AI working together on the same canvas", src: `${import.meta.env.BASE_URL}video3.mp4` },
+    { prompt: "Visualize current through a cylindrical wire", title: "Real-Time Error Correction", description: "The AI catches mistakes mid-step and guides corrections", src: `${import.meta.env.BASE_URL}video4.mp4` },
+    { prompt: "Visually derive the Pythagorean Theorem", title: "Interactive Widgets & Tools", description: "Embedded graphing, calculators, and simulations", src: `${import.meta.env.BASE_URL}video5.mp4` },
+    { prompt: "Explain Square Wave Harmonics", title: "Spaced Repetition Woven In", description: "Automatic review scheduling based on mastery", src: `${import.meta.env.BASE_URL}video6.mp4` },
   ];
 
   return (
@@ -22,8 +22,9 @@ export default function VideoDemos() {
           <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#666]" />
           <input
             type="text"
-            placeholder="What is underdamped motion?"
-            className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-white/90 text-lg placeholder:text-[#555] focus:outline-none focus:border-white/20 transition-colors font-mono"
+            readOnly
+            value={videoDemos[activeVideo].prompt}
+            className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-[#888] text-lg focus:outline-none transition-colors font-mono cursor-default pointer-events-none"
           />
         </div>
 

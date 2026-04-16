@@ -63,12 +63,12 @@ export default function ClarifyedFeatures() {
           <p className="max-w-2xl text-base md:text-lg text-neutral-400">
             It's easy to get lost in a sea of generic chatbot answers. We filter out the noise, providing interactive, personalized, side-by-side tutoring that actually helps you learn.
           </p>
-          <div className="relative mx-auto mt-8 max-w-3xl overflow-hidden">
-            <div className="absolute left-0 z-50 h-full w-20 bg-linear-to-r from-[#1a1a1a]" />
-            <div className="absolute right-0 z-50 h-full w-20 bg-linear-to-l from-[#1a1a1a]" />
-
-            <div className="-mx-6 flex w-full flex-col md:-mx-10 lg:-mx-16">
-              <Marquee className="[--duration:45s] [--gap:0.75rem]" repeat={4}>
+          <div 
+            className="relative mx-auto mt-12 w-full max-w-5xl overflow-hidden"
+            style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}
+          >
+            <div className="flex w-full flex-col space-y-4 py-2">
+              <Marquee duration={80} repeat={5}>
                 {m1.map((q) => (
                   <Badge
                     className="rounded-none border-[#333333] bg-[#222222] text-[#f4f4f0] px-4 py-2 font-medium tracking-wide shadow-sm"
@@ -82,8 +82,8 @@ export default function ClarifyedFeatures() {
               </Marquee>
 
               <Marquee
-                className="[--duration:50s] [--gap:0.75rem]"
-                repeat={4}
+                duration={90}
+                repeat={5}
                 reverse
               >
                 {m2.map((q) => (
@@ -98,7 +98,7 @@ export default function ClarifyedFeatures() {
                 ))}
               </Marquee>
 
-              <Marquee className="[--duration:42s] [--gap:0.75rem]" repeat={4}>
+              <Marquee duration={85} repeat={5}>
                 {m3.map((q) => (
                   <Badge
                     className="rounded-none border-[#333333] bg-[#222222] text-[#f4f4f0] px-4 py-2 font-medium tracking-wide shadow-sm"

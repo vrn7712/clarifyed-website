@@ -44,14 +44,14 @@ export default function Platform() {
       <div className="relative z-10 max-w-5xl mx-auto pt-20">
 
 
-        <div className="hidden md:flex justify-center items-center mb-12 relative h-64">
+        <div className="hidden md:flex justify-center items-center mb-12 relative h-80">
           <motion.button
             onClick={() => setActiveCircle(activeCircle === 'whiteboard' ? null : 'whiteboard')}
             initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: -128 }}
+            whileInView={{ opacity: 1, x: -160 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
+            className={`absolute w-80 h-80 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'whiteboard' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-50 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
           >
             <span className={`text-xl font-medium transition-colors ${activeCircle === 'whiteboard' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Whiteboard</span>
           </motion.button>
@@ -62,7 +62,7 @@ export default function Platform() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
+            className={`absolute w-80 h-80 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'knowledge' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-50 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-20'}`}
           >
             <span className={`text-xl font-medium transition-colors ${activeCircle === 'knowledge' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Knowledge Graph</span>
           </motion.button>
@@ -70,10 +70,10 @@ export default function Platform() {
           <motion.button
             onClick={() => setActiveCircle(activeCircle === 'collaboration' ? null : 'collaboration')}
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 128 }}
+            whileInView={{ opacity: 1, x: 160 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`absolute w-64 h-64 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-30 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
+            className={`absolute w-80 h-80 rounded-full border flex items-center justify-center transition-all duration-500 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#e8705b] focus-visible:outline-offset-2 overflow-hidden ${activeCircle === 'collaboration' ? 'border-[#e8705b] bg-[#1a1a1a]/90 backdrop-blur-3xl shadow-2xl z-50 scale-110' : 'border-[#e8705b]/30 bg-[#1a1a1a]/20 backdrop-blur-md hover:border-[#e8705b] hover:bg-[#1a1a1a]/40 z-10'}`}
           >
             <span className={`text-xl font-medium transition-colors ${activeCircle === 'collaboration' ? 'text-[#e8705b]' : 'text-[#a3a3a3]'}`}>Collaboration</span>
           </motion.button>

@@ -6,29 +6,29 @@ const layersData = [
     id: 1, 
     title: "Learn", 
     desc: "The AI writes on the digital whiteboard — notes, diagrams, and equations, stroke by stroke.", 
-    cy: 300, 
-    textY: 150 
+    cy: 420, 
+    textY: 300 
   },
   { 
     id: 2, 
     title: "Adapt", 
     desc: "A persistent knowledge graph tracks everything you master, adjusting difficulty in real time.", 
-    cy: 370, 
-    textY: 300 
+    cy: 500, 
+    textY: 450 
   },
   { 
     id: 3, 
     title: "Execute", 
     desc: "Take the pen and solve directly on the canvas. The AI observes and corrects you mid-step.", 
-    cy: 440, 
-    textY: 450 
+    cy: 580, 
+    textY: 600 
   },
   { 
     id: 4, 
     title: "Collaborate", 
     desc: "Invite friends and solve together while the smart AI mediates the group effortlessly.", 
-    cy: 510, 
-    textY: 600 
+    cy: 660, 
+    textY: 750 
   },
 ];
 
@@ -56,7 +56,7 @@ export default function ThinkDifferent() {
         
         {/* SVG acts as absolute structural layout */}
         <svg 
-          viewBox="0 0 1000 800" 
+          viewBox="0 0 1000 1000" 
           preserveAspectRatio="xMidYMid meet"
           className="w-full h-full max-w-7xl mx-auto"
         >
@@ -76,11 +76,11 @@ export default function ThinkDifferent() {
             </linearGradient>
           </defs>
 
-          {/* Heading strictly aligned at the top right of the composition */}
-          <foreignObject x="550" y="30" width="450" height="120">
-            <div className="flex flex-col text-left">
-              <h2 className="text-4xl text-white font-medium">Think Different.</h2>
-              <h2 className="text-4xl text-neutral-500 font-medium mt-1">We Already Built It.</h2>
+          {/* Title rendered logically inside the SVG canvas so it coordinates perfectly aligned scale and offsets naturally against elements independently of browser height. */}
+          <foreignObject x="0" y="80" width="1000" height="200">
+            <div className="flex flex-col items-center justify-center w-full h-full text-center">
+              <h2 className="text-[72px] leading-tight text-white font-medium tracking-tight">Think Different.</h2>
+              <h2 className="text-[56px] leading-tight text-neutral-500 font-medium mt-2 tracking-tight">We Already Built It.</h2>
             </div>
           </foreignObject>
 
@@ -170,8 +170,8 @@ export default function ThinkDifferent() {
           })}
         </svg>
 
-        {/* Global Dark Gradient Fade to hide hard bottom edges */}
-        <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent pointer-events-none z-10" />
+        {/* Global Dark Gradient Fade to hide hard bottom edges cleanly and shallow without obscuring lowest text blocks*/}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a1a1a] to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import { Linkedin, Twitter } from 'lucide-react';
 
 export default function Team() {
   return (
-    <section className="py-32 px-6 bg-[#1a1a1a]">
+    <section className="pt-16 pb-32 px-6 bg-[#1a1a1a]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,13 +24,13 @@ export default function Team() {
             {
               name: "Vyom Nishant Patel",
               role: "ML Pipeline Lead & R&D Lead",
-              image: "https://i.pravatar.cc/300?img=68",
+              image: `${import.meta.env.BASE_URL}team_vyom.jpg`,
               bio: "Architecting the AI teaching engine and knowledge graph infrastructure that powers personalized whiteboard tutoring."
             },
             {
               name: "Abhisar Mehta",
               role: "ML Pipeline Engineer & Lead of Production Systems",
-              image: "https://i.pravatar.cc/300?img=33",
+              image: `${import.meta.env.BASE_URL}team_abhisar.jpg`,
               bio: "Building the production ML systems that deliver real-time AI tutoring at scale across thousands of concurrent sessions."
             }
           ].map((person, i) => (
