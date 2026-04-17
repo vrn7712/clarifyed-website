@@ -25,19 +25,20 @@ export default function Hero() {
           Whiteboard-Native AI Tutoring
         </motion.div>
         
-        <motion.h1 
+        <motion.h1
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          className="text-4xl sm:text-6xl md:text-8xl font-medium tracking-tighter leading-[1.05] mb-8"
+          className="text-5xl sm:text-7xl md:text-8xl font-medium tracking-tighter leading-[1.02] mb-8 text-[#f4f4f0]"
         >
-          Learn Like Never Before<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3]">With </span>
+          Learn on a{' '}
           <RandomUnderline strokeWidth={14}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#a3a3a3] pr-2">a Real Tutor</span>
+            <span className="pr-2">whiteboard</span>
           </RandomUnderline>
+          .<br />
+          <span className="text-[#a3a3a3]">Not in a chat.</span>
         </motion.h1>
-        
-        <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-xl md:text-2xl text-[#a3a3a3] max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-          No chatbot. No chat interface. An AI tutor that teaches on a whiteboard — writing, drawing, and guiding you step by step.
+
+        <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-lg md:text-xl text-[#a3a3a3] max-w-xl mx-auto mb-12 leading-relaxed font-light">
+          The AI writes the lesson on the board, hands you the pen, and corrects you mid-stroke when you go wrong.
         </motion.p>
         
         <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
