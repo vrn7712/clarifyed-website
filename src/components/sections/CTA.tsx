@@ -23,10 +23,14 @@ export default function CTA() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top", // Trigger when the top of section touches the top of window 
-          end: "+=200%",    // Controls scrolling distance inside the pin
+          start: "top top",
+          end: "+=100%",          // Tight: unpin coincides with timeline completion
           pin: true,
-          scrub: 1,         // Smooth interpolations 
+          pinSpacing: true,
+          pinReparent: true,      // Move section to <body> during pin → no ancestor stacking interference
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         }
       });
 
@@ -101,7 +105,12 @@ export default function CTA() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} id="contact" className="bg-[#1a1a1a] w-full h-screen relative overflow-hidden flex flex-col">
+    <section
+      ref={containerRef}
+      id="contact"
+      className="bg-[#1a1a1a] w-full h-screen relative overflow-hidden flex flex-col"
+      style={{ zIndex: 30, isolation: 'isolate' }}
+    >
       
       {/* Absolute SVG expanding background mapping to full container */}
       <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">

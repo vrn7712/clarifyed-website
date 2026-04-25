@@ -8,7 +8,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="pt-12 sm:pt-16 pb-20 sm:pb-32 px-6 relative overflow-hidden bg-[#1a1a1a]">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative">
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

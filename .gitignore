@@ -12,3 +12,7 @@ clarifyed_ai_summary_v4.md
 # AI tooling
 CLAUDE.md
 .claude/
+
+# Sibling working copies — not part of the deployed site
+clarifyed_white_theme/
+new_clarifyed_website/

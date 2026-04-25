@@ -9,20 +9,12 @@ export default function Testimonials() {
     {
       quote: "Clarifyed is like having a second brain. It learned every unique formula I derived and every niche technique I practiced. When I got stuck during a mock exam, it would instantly recall the exact method we built together to solve it. It's the ultimate competitive partner.",
       name: "Rishi Perumal",
-      title: "JEE Aspirant",
-      image: "https://i.pravatar.cc/150?img=15"
-    },
-    {
-      quote: "The knowledge graph is a game-changer. I can see exactly where each student's gaps are, what misconceptions they hold, and what they mastered weeks ago. It's like having X-ray vision into learning.",
-      name: "Dr. James Whitfield",
-      title: "Physics Teacher, Greenwood Academy",
-      image: "https://i.pravatar.cc/150?img=11"
+      title: "JEE Aspirant"
     },
     {
       quote: "It's really silly and I enjoyed the answers it gave, they were easy to understand.",
       name: "Veda Pigilam",
-      title: "Student",
-      image: "https://i.pravatar.cc/150?img=45"
+      title: "Student"
     }
   ];
 
@@ -88,7 +80,6 @@ export default function Testimonials() {
               "{testimonials[currentTestimonial].quote}"
             </blockquote>
             <div className="flex items-center gap-4">
-              <img src={testimonials[currentTestimonial].image} alt={testimonials[currentTestimonial].name} className="w-14 h-14 rounded-full border-2 border-[#e8705b]" />
               <div>
                 <h4 className="font-medium text-lg">{testimonials[currentTestimonial].name}</h4>
                 <p className="text-[#a3a3a3] text-sm">{testimonials[currentTestimonial].title}</p>
